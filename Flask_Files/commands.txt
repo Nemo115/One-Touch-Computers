@@ -1,0 +1,12 @@
+Commands:
+Terminal - CMD
+
+ls - dir
+pwd - echo %cd%
+export FLASK_APP=hello - set FLASK_APP=hello
+
+use /
+
+TO RUN: flask --app hello run
+
+for hot reloads: python -m flask --debug run

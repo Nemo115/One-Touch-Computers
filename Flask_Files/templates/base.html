@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+    <title>One Touch Computers</title>
+</head>
+<body>
+    <div id="mainBox">
+        <nav class="navBar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+                <li><a href="#">Page 4</a></li>
+                <p>One Touch Computers</p>
+            </ul>
+        </nav>
+        <div id="contentBox">
+            {%block content%}
+            {%endblock%}
+        </div>
+    </div>
+</body>
+</html>
