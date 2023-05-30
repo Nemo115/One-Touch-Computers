@@ -6,7 +6,6 @@
 ul li{
     list-style:none;
     float:left;
-    line-height: 100px;
 }
 html, body{
     height: 100%;
@@ -27,14 +26,47 @@ nav p{
 ul li a{
     display: block;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
     color:#1e1e1e;
     padding: 0 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     width: 60px;
 }
 ul li a:hover{
     background-color: #1e1e1e;
     color: beige;
+}
+table, th, td {
+    border: 1px solid;
+    padding: 2px;
+}
+table {
+    width: 50%;
+}
+form{
+    margin: 5px;
+}
+.input_field{
+    background-color: beige;
+    color: #1e1e1e;
+    border-color: beige;
+    display: inline-block;
+    border-radius: 4px;
+    width: 50%;
+    height: 25px;
+    padding: 5px;
+    margin: 5px;
+}
+.data_page{
+    display: flex;
+    margin: 5px;
+}
+.error{
+    color:#ff5f5f;
+}
+.flash_msg{
+    color:#71c6ff;
 }
 #mainBox{
     display:flex;
