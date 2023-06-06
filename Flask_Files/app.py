@@ -48,7 +48,7 @@ def customer_details():
             except:
                 flash("Error: Unable to submit new entry, not connected to SQL database")
         if request.method == 'GET':#search bar entered
-            search_bar = "search_customerName"
+            search_bar = "search_customerName"#defining searchBar
             if request.args.get(search_bar) != None:#if the argument is in searchbar
                 #sqlString = "SELECT * FROM customer_table WHERE name LIKE '%"+ request.args.get("search_customerName") +"%'"
                 customers = cur.execute(select_search(request.args.get(search_bar)))
