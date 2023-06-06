@@ -41,13 +41,56 @@ table, th, td {
     border: 1px solid;
     padding: 2px;
 }
-table {
-    width: 50%;
-}
 form{
     margin: 5px;
 }
-.input_field{
+input{
+    border-width: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+input[type = search]{
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    height: 35px;
+}
+.table_button{
+    align-items: center;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    width: 100%;
+    height: 50px;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+}
+.table_button:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+.table_button:hover {
+box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+transform: translateY(-2px);
+}
+.table_button:active {
+box-shadow: #D6D6E7 0 3px 7px inset;
+transform: translateY(2px);
+}
+.search_bar{
     background-color: beige;
     color: #1e1e1e;
     border-color: beige;
@@ -58,15 +101,46 @@ form{
     padding: 5px;
     margin: 5px;
 }
+.input_field{
+    background-color: beige;
+    color: #1e1e1e;
+    border-color: beige;
+    display: inline-block;
+    border-radius: 4px;
+    width: 80%;
+    height: 25px;
+    padding: 5px;
+    margin: 5px;
+}
 .data_page{
     display: flex;
     margin: 5px;
+}
+.data_page table{
+    width: 150%;
 }
 .error{
     color:#ff5f5f;
 }
 .flash_msg{
     color:#71c6ff;
+}
+.table-scroll{
+    height: 500px;
+    overflow: scroll;
+    width: 120%;
+    overflow-x: hidden;
+    border: 2px salmon;
+}
+.table-scroll table{
+    width: 100%;
+}
+.mini_table{
+    height: 500px;
+    overflow: scroll;
+    width: 120%;
+    overflow-x: hidden;
+    border: 2px salmon;
 }
 #mainBox{
     display:flex;
