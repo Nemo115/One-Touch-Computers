@@ -12,40 +12,43 @@
         {%endif%}
     {%endwith%}
 <h1>Job Data</h1>
-<input type="search" placeholder="Search" class="search_bar">
-    <div class="data_page">
-        <div class="table-scroll">
-            <table>
-                <tr>
-                    <td>ID</td>
-                    <td>Hardware</td>
-                    <td>Start Date</td>
-                    <td>End Date</td>
-                    <td>Estimated Cost</td>
-                    <td>Final Cost</td>
-                    <td>Charge Amount</td>
-                </tr>
-                {%for order in orderDetails%}
-                <tr>
-                    <td>{{order[0]}}</td>
-                    <td>{{order[1]}}</td>
-                    <td>{{order[2]}}</td>
-                    <td>{{order[3]}}</td>
-                </tr>
-                {%endfor%}
-            </table>
-        </div>
-        
-        <div>
-            <form method="post" action="/" class="data_entry">
-                <input type="text" name="hardwareName" placeholder="Hardware" class="input_field"/>
-                <input type="datetime" name="start_date" placeholder="Estimated Delivery Date" class="input_field"/>
-                <input type="datetime" name="end_date" placeholder="Delivery Date" class="input_field"/>
-                <input type="number" name="estimated_cost" placeholder="Estimated Cost" class="input_field"/>
-                <input type="number" name="final_cost" placeholder="Final Cost" class="input_field"/>
-                <input type="number" name="charge_amount" placeholder="Charge Amount" class="input_field"/>
-                <input type="submit" class="input_field"/>
-            </form>
-        </div>
+<form method = 'get'>
+    <input type="search" placeholder="Search" class="search_bar">
+</form>
+
+<div class="data_page">
+    <div class="table-scroll">
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>Hardware</td>
+                <td>Start Date</td>
+                <td>End Date</td>
+                <td>Estimated Cost</td>
+                <td>Final Cost</td>
+                <td>Charge Amount</td>
+            </tr>
+            {%for order in orderDetails%}
+            <tr>
+                <td>{{order[0]}}</td>
+                <td>{{order[1]}}</td>
+                <td>{{order[2]}}</td>
+                <td>{{order[3]}}</td>
+            </tr>
+            {%endfor%}
+        </table>
     </div>
+    
+    <div>
+        <form method="post" action="/" class="data_entry">
+            <input type="text" name="hardwareName" placeholder="Hardware" class="input_field"/>
+            <input type="datetime" name="start_date" placeholder="Estimated Delivery Date" class="input_field"/>
+            <input type="datetime" name="end_date" placeholder="Delivery Date" class="input_field"/>
+            <input type="number" name="estimated_cost" placeholder="Estimated Cost" class="input_field"/>
+            <input type="number" name="final_cost" placeholder="Final Cost" class="input_field"/>
+            <input type="number" name="charge_amount" placeholder="Charge Amount" class="input_field"/>
+            <input type="submit" class="input_field"/>
+        </form>
+    </div>
+</div>
 {%endblock%}
