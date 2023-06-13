@@ -1,0 +1,72 @@
+{%extends "base.html"%}
+{%block content%}
+    {%with messages = get_flashed_messages()%}
+        {%if messages%}
+            {%for msg in messages%}
+                {%if "Error" in msg%}
+                    <h1 class="error">{{msg}}</h1>
+                {%else%}
+                    <h1 class="flash_msg">{{msg}}</h1>
+                {%endif%}
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
+<form method = 'get'class="horizontal_form">
+    <input name="search_jobs_bar" type="search" placeholder="Search Hardware" class="search_bar">
+    <button class="table_button">refresh</button>
+</form>
+<div class="data_page">
+    <div class="table-scroll">
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>Hardware</td>
+                <td>Start Date</td>
+                <td>End Date</td>
+                <td>Estimated Cost</td>
+                <td>Final Cost</td>
+                <td>Charge Amount</td>
+            </tr>
+            {%for job in jobDetails%}
+            <tr>
+                <td><button class="table_button"onclick="id_button({{job[0]}})">{{job[0]}}</button></td>
+                <td>{{job[1]}}</td>
+                <td>{{job[2]}}</td>
+                <td>{{job[3]}}</td>
+                <td>{{job[4]}}</td>
+                <td>{{job[5]}}</td>
+                <td>{{job[6]}}</td>
+                <td><button class="table_button" onclick="edit_row('job',{{job[0]}})">edit</button></td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+    
+    <div>
+        <form method="post" class="data_entry">
+            <input type="text" name="hardwareName" placeholder="Hardware" class="input_field"/>
+            <input type="date" name="start_date" placeholder="Estimated Delivery Date" class="input_field"/>
+            <input type="date" name="end_date" placeholder="Delivery Date" class="input_field"/>
+            <input type="number" name="estimated_cost" placeholder="Estimated Cost" class="input_field"/>
+            <input type="number" name="final_cost" placeholder="Final Cost" class="input_field"/>
+            <input type="number" name="charge_amount" placeholder="Charge Amount" class="input_field"/>
+            <input type="submit" class="input_field"/>
+        </form>
+    </div>
+    <div id="edit_job_popup_window" class="popup hidden medium">
+        <form method="post" class="data_entry">
+        <h1>Edit Data</h1>
+        <h3 class="horizontal_form">Hardware: <input id="edit_job_hardware" name="edit_job_hardware" type="text" class="input_field right"></h3>
+        <h3 class="horizontal_form">Start Date: <input id="edit_job_start_date" name="edit_job_start_date" type="date" class="input_field right"></h3>
+        <h3 class="horizontal_form">End Date: <input id="edit_job_end_date" name="edit_job_end_date" type="date" class="input_field right"></h3>
+        <h3 class="horizontal_form">Estimated Cost: <input id="edit_estimated_cost" name="edit_estimated_cost" type="number" class="input_field right"></h3>
+        <h3 class="horizontal_form">Final Cost: <input id="edit_final_cost" name="edit_final_cost" type="number" class="input_field right"></h3>
+        <h3 class="horizontal_form">Charge Amount: <input id="edit_charge_amount" name="edit_charge_amount" type="number" class="input_field right"></h3>
+        <input type="hidden" name="jobID" id="jobID" value=""/>
+        <button id="edit_button" class="table_button" onclick="edit_form()">edit</button>
+        <input type="hidden" name="page_submitType" id="page_submitType" value=""/>
+        </form>
+        <button onclick="toggle_popup('edit_job_popup_window')" class="table_button">cancel</button>
+    </div>
+</div>
+{%endblock%}

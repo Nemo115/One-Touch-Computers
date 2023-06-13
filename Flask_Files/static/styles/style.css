@@ -142,6 +142,53 @@ transform: translateY(2px);
     overflow-x: hidden;
     border: 2px salmon;
 }
+.horizontal_form{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+.horizontal_form button{
+    width: 30%;
+    height: 35px;
+}
+.small{
+    width: 20%;
+    left: 45%;
+}
+.medium{
+    width: 40%;
+    left: 35%;
+}
+.popup{
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 40%;
+    
+    margin-left: -80px;
+}
+.popup button{
+    margin-top: 20px;
+}
+.popup h3{
+    height: 50px;
+}
+.popup input{
+    width: 50%;
+}
+.right {
+    position: absolute;
+    right: 5%;
+    padding: 10px;
+    background-color:rgb(224, 236, 255);
+}
+.hidden{
+    visibility: hidden;
+}
 #mainBox{
     display:flex;
     flex-direction: row;

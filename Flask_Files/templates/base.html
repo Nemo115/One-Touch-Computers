@@ -13,8 +13,8 @@
             <ul>
                 <li><a href=".">Home</a></li>
                 <li><a href="customer_details">Customer Database</a></li>
-                <li><a href="page_3">Jobs Database</a></li>
-                <li><a href="page_4">Orders Database</a></li>
+                <li><a href="job_data">Jobs Database</a></li>
+                <li><a href="order_data">Orders Database</a></li>
                 <p>One Touch Computers Database</p>
             </ul>
         </nav>
@@ -22,6 +22,70 @@
             {%block content%}
             {%endblock%}
         </div>
+        <div id="nav_popup_window" class="popup hidden">
+            <h1>Data Navigation</h1>
+            <h3 class="horizontal_form">Customer: <button id="cust_id_btn" class="table_button right">1</button></h3>
+            <h3 class="horizontal_form">Order: <button id="order_id_btn" class="table_button right">1</button></h3>
+            <h3 class="horizontal_form">Jobs: <button id="job_id_btn" class="table_button right">1</button></h3>
+            <button onclick="toggle_popup('nav_popup_window')" class="table_button">hide</button>
+        </div>        
     </div>
+    <script>
+        function toggle_popup(id){
+            var popup = document.getElementById(id);
+            if(popup.classList.contains('hidden')){
+                popup.classList.remove('hidden');
+            }
+            else
+            {
+                popup.classList.add('hidden');
+            }
+        }
+        function id_button(value){
+            toggle_popup('nav_popup_window');
+            var _id = value;
+            var customerBtn = document.getElementById("cust_id_btn");
+            var orderBtn = document.getElementById("order_id_btn");
+            var jobBtn = document.getElementById("job_id_btn");
+            customerBtn.textContent = _id;
+            orderBtn.textContent = _id;
+            jobBtn.textContent = _id;
+        }
+        
+        function edit_form()
+        {        
+            document.getElementById("page_submitType").value="Edit";
+            
+            form.submit();
+        }
+
+        function edit_row(type,id_value){            
+            var _id = id_value;      
+           
+            if(type == 'customer'){
+                toggle_popup('edit_customer_popup_window');
+                document.getElementById("customerID").value = id_value;
+                var cust_field = document.getElementById("edit_cust_name");
+                var cust_email = document.getElementById("edit_cust_email");
+                var cust_phone = document.getElementById("edit_cust_phone");
+                
+                cust_field.value = document.getElementById("customerName_"+ _id).innerText;
+                cust_email.value = document.getElementById("customerEmail_"+ _id).innerText;
+                cust_phone.value = document.getElementById("customerPhone_"+ _id).innerText;                
+            }
+            else if(type == 'order'){
+                
+            }
+            else if(type == 'job'){
+                toggle_popup('edit_job_popup_window');
+                var job_hardware = document.getElementById("edit_cust_name");
+                var job_start_date = document.getElementById("edit_job_start_date");
+                var job_end_date = document.getElementById("edit_job_end_date");
+                var estimated_cost = document.getElementById("edit_estimated_cost");
+                var final_cost = document.getElementById("edit_final_cost");
+                var charge_amount = document.getElementById("edit_charge_amount");
+            }
+        }
+    </script>
 </body>
 </html>

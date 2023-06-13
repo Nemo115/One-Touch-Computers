@@ -12,36 +12,50 @@
         {%endif%}
     {%endwith%}
     {%if connected%}
-    <form method="get">
-        <input type="search" placeholder="Search" class="search_bar" name="search_customerName">
-    </form>
-    <div class="data_page">
-        <div class="table-scroll">
-            <table>
-                <tr>
-                    <td>ID</td>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                </tr>
-                {%for customer in customerDetails%}
-                <tr>
-                    <td><button class="table_button">{{customer[0]}}</button></td>
-                    <td>{{customer[1]}}</td>
-                    <td>{{customer[2]}}</td>
-                    <td>{{customer[3]}}</td>
-                </tr>
-                {%endfor%}
-            </table>
+        <form method="get" class="horizontal_form">
+            <input type="search" placeholder="Search Customer" class="search_bar" name="search_customerName">
+            <button class="table_button">refresh</button>
+        </form>
+        <div class="data_page">
+            <div class="table-scroll">
+                <table>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Phone</td>
+                    </tr>
+                    {%for customer in customerDetails%}
+                    <tr>
+                        <td><button class="table_button" onclick="id_button({{customer[0]}})">{{customer[0]}}</button></td>
+                        <td id="customerName_{{customer[0]}}">{{customer[1]}}</td>
+                        <td id="customerEmail_{{customer[0]}}">{{customer[2]}}</td>
+                        <td id="customerPhone_{{customer[0]}}">{{customer[3]}}</td>
+                        <td><button class="table_button" onclick="edit_row('customer',{{customer[0]}})">edit</button></td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+            <div>
+                <form method="post" class="data_entry">
+                    <input type="text" name="customerName" placeholder="Customer Name" class="input_field"/>
+                    <input type="email" name="email" placeholder="Customer Email" class="input_field"/>
+                    <input type="number" name="phone" placeholder="Customer Phone Number" class="input_field"/>
+                    <input type="submit" class="input_field">
+                </form>
+            </div>
+            <div id="edit_customer_popup_window" class="popup hidden small">
+                <form method="post" class="data_entry">
+                <h1>Edit Data</h1>
+                <h3 class="horizontal_form">Name: <input id="edit_cust_name" name="edit_cust_name" type="text" class="input_field right"></h3>
+                <h3 class="horizontal_form">Email: <input id="edit_cust_email" name="edit_cust_email" type="email" class="input_field right"></h3>
+                <h3 class="horizontal_form">Phone: <input id="edit_cust_phone" name="edit_cust_phone" type="number" class="input_field right"></h3>
+                <input type="hidden" name="customerID" id="customerID" value=""/>
+                <button id="edit_button" class="table_button" onclick="edit_form()">edit</button>
+                <input type="hidden" name="page_submitType" id="page_submitType" value=""/>
+                </form>
+                <button onclick="toggle_popup('edit_customer_popup_window')" class="table_button">cancel</button>
+            </div>
         </div>
-        <div>
-            <form method="post" class="data_entry">
-                <input type="text" name="customerName" placeholder="Customer Name" class="input_field"/>
-                <input type="email" name="email" placeholder="Customer Email" class="input_field"/>
-                <input type="number" name="phone" placeholder="Customer Phone Number" class="input_field"/>
-                <input type="submit" class="input_field">
-            </form>
-        </div>
-    </div>
     {%endif%}
 {%endblock%}

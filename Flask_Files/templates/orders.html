@@ -11,44 +11,43 @@
             {%endfor%}
         {%endif%}
     {%endwith%}
-<h1>Job Data</h1>
-<form method = 'get'>
-    <input type="search" placeholder="Search" class="search_bar">
+{%if connected%}
+<form method = 'get'class="horizontal_form">
+    <input name="search_orders_bar" type="search" placeholder="Search Ordered Item" class="search_bar">
+    <button class="table_button">refresh</button>
 </form>
-
 <div class="data_page">
     <div class="table-scroll">
         <table>
             <tr>
                 <td>ID</td>
-                <td>Hardware</td>
+                <td>Ordered Item</td>
                 <td>Start Date</td>
                 <td>End Date</td>
                 <td>Estimated Cost</td>
-                <td>Final Cost</td>
-                <td>Charge Amount</td>
             </tr>
             {%for order in orderDetails%}
             <tr>
-                <td>{{order[0]}}</td>
+                <td><button class="table_button"onclick="id_button({{order[0]}})">{{order[0]}}</button></td>
                 <td>{{order[1]}}</td>
                 <td>{{order[2]}}</td>
                 <td>{{order[3]}}</td>
+                <td>{{order[4]}}</td>
+                <td><button class="table_button" onclick="id_button({{order[0]}})">edit</button></td>
             </tr>
             {%endfor%}
         </table>
     </div>
     
     <div>
-        <form method="post" action="/" class="data_entry">
-            <input type="text" name="hardwareName" placeholder="Hardware" class="input_field"/>
-            <input type="datetime" name="start_date" placeholder="Estimated Delivery Date" class="input_field"/>
-            <input type="datetime" name="end_date" placeholder="Delivery Date" class="input_field"/>
-            <input type="number" name="estimated_cost" placeholder="Estimated Cost" class="input_field"/>
-            <input type="number" name="final_cost" placeholder="Final Cost" class="input_field"/>
-            <input type="number" name="charge_amount" placeholder="Charge Amount" class="input_field"/>
+        <form method="post" class="data_entry">
+            <input type="text" name="ordered_item" placeholder="Ordered Item" class="input_field"/>
+            <input type="date" name="estimated_delivery_date" placeholder="Estimated Delivery Date" class="input_field"/>
+            <input type="date" name="delivery_date" placeholder="Delivery Date" class="input_field"/>
+            <input type="number" name="order_cost" placeholder="Order Cost" class="input_field"/>
             <input type="submit" class="input_field"/>
         </form>
     </div>
 </div>
+{%endif%}
 {%endblock%}
