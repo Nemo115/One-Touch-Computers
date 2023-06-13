@@ -41,20 +41,19 @@ def customer_details():
         cur = mysql.connection.cursor()
         if request.method == 'POST':
             try:
-                submitType = request.form["page_submitType"]
-                if(submitType) == "Edit":
+                try:
                     customerID = request.form['customerID']
                     name = request.form['edit_cust_name']
                     email = request.form['edit_cust_email']
                     phone = request.form['edit_cust_phone']
                     cur.callproc('std_edit_cust', (customerID, name, email, phone))
-                else:
+                except:
                     name = request.form['customerName']
                     email = request.form['email']
                     phone = request.form['phone']
                     outID = -1
                     cur.callproc('stdAddUser', (name, email, phone, outID))
-                    mysql.connection.commit()
+                mysql.connection.commit()
             except:
                 flash("Error: Unable to submit new entry, not connected to SQL database")
 
@@ -84,19 +83,29 @@ def jobs():
         cur = mysql.connection.cursor()
         if request.method == 'POST':
             try:
-                hardware = request.form['hardwareName']
-                start_date = request.form['start_date']
-                end_date = request.form['end_date']
-                estimated_cost = request.form['estimated_cost']
-                final_cost = request.form['final_cost']
-                charge_amount = request.form['charge_amount']
-                outID = -1
+                try:
+                    jobID = request.form['jobID']
+                    hardware = request.form['edit_job_hardware']
+                    start_date = request.form['edit_job_start_date']
+                    end_date = request.form['edit_job_end_date']
+                    estimated_cost = request.form['edit_estimated_cost']
+                    final_cost = request.form['edit_final_cost']
+                    charge_amount = request.form['edit_charge_amount']
+                    
+                    cur.callproc('std_edit_job', (jobID, hardware, start_date, end_date, estimated_cost, final_cost, charge_amount))
+                except:
+                    hardware = request.form['hardwareName']
+                    start_date = request.form['start_date']
+                    end_date = request.form['end_date']
+                    estimated_cost = request.form['estimated_cost']
+                    final_cost = request.form['final_cost']
+                    charge_amount = request.form['charge_amount']
+                    outID = -1
 
-                print(start_date)
-                cur.callproc('std_add_job', (hardware, start_date, end_date, estimated_cost, final_cost, charge_amount, outID))
+                    cur.callproc('std_add_job', (hardware, start_date, end_date, estimated_cost, final_cost, charge_amount, outID))
                 mysql.connection.commit()
             except:
-                flash("Error: Unable to submit new entry, not connected to SQL database")
+                flash("Error: Unable to submit new entry, check your database connection")
 
         if request.method == 'GET':
             search_bar = "search_jobs_bar"#defining searchBar

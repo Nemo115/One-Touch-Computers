@@ -28,7 +28,7 @@
                 <td>Charge Amount</td>
             </tr>
             {%for job in jobDetails%}
-            <tr>
+            <tr id="job_row_{{job[0]}}">
                 <td><button class="table_button"onclick="id_button({{job[0]}})">{{job[0]}}</button></td>
                 <td>{{job[1]}}</td>
                 <td>{{job[2]}}</td>
@@ -41,7 +41,6 @@
             {%endfor%}
         </table>
     </div>
-    
     <div>
         <form method="post" class="data_entry">
             <input type="text" name="hardwareName" placeholder="Hardware" class="input_field"/>
@@ -63,8 +62,8 @@
         <h3 class="horizontal_form">Final Cost: <input id="edit_final_cost" name="edit_final_cost" type="number" class="input_field right"></h3>
         <h3 class="horizontal_form">Charge Amount: <input id="edit_charge_amount" name="edit_charge_amount" type="number" class="input_field right"></h3>
         <input type="hidden" name="jobID" id="jobID" value=""/>
-        <button id="edit_button" class="table_button" onclick="edit_form()">edit</button>
-        <input type="hidden" name="page_submitType" id="page_submitType" value=""/>
+        <button id="edit_button" class="table_button" onclick="edit_form('job')">edit</button>
+        <input type="hidden" name="job_submit_type" id="job_submit_type" value=""/>
         </form>
         <button onclick="toggle_popup('edit_job_popup_window')" class="table_button">cancel</button>
     </div>

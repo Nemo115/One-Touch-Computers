@@ -30,6 +30,7 @@
             <button onclick="toggle_popup('nav_popup_window')" class="table_button">hide</button>
         </div>        
     </div>
+    
     <script>
         function toggle_popup(id){
             var popup = document.getElementById(id);
@@ -52,10 +53,17 @@
             jobBtn.textContent = _id;
         }
         
-        function edit_form()
-        {        
-            document.getElementById("page_submitType").value="Edit";
-            
+        function edit_form(type)
+        {
+            if(type == 'customer'){
+                document.getElementById("customer_submit_type").value="Edit";
+            }
+            else if(type == 'order'){
+                
+            }
+            else if(type == 'job'){
+                document.getElementById("job_submit_type").value="Edit";
+            }
             form.submit();
         }
 
@@ -64,7 +72,9 @@
            
             if(type == 'customer'){
                 toggle_popup('edit_customer_popup_window');
+
                 document.getElementById("customerID").value = id_value;
+
                 var cust_field = document.getElementById("edit_cust_name");
                 var cust_email = document.getElementById("edit_cust_email");
                 var cust_phone = document.getElementById("edit_cust_phone");
@@ -78,12 +88,16 @@
             }
             else if(type == 'job'){
                 toggle_popup('edit_job_popup_window');
-                var job_hardware = document.getElementById("edit_cust_name");
-                var job_start_date = document.getElementById("edit_job_start_date");
-                var job_end_date = document.getElementById("edit_job_end_date");
-                var estimated_cost = document.getElementById("edit_estimated_cost");
-                var final_cost = document.getElementById("edit_final_cost");
-                var charge_amount = document.getElementById("edit_charge_amount");
+                document.getElementById("jobID").value = id_value;
+
+                var row = document.getElementById("job_row_"+_id);
+
+                document.getElementById("edit_job_hardware").value = row.cells[1].innerText;
+                document.getElementById("edit_job_start_date").value = row.cells[2].innerText;
+                document.getElementById("edit_job_end_date").value = row.cells[3].innerText;
+                document.getElementById("edit_estimated_cost").value = row.cells[4].innerText;
+                document.getElementById("edit_final_cost").value = row.cells[5].innerText;
+                document.getElementById("edit_charge_amount").value = row.cells[6].innerText;
             }
         }
     </script>
